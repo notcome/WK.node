@@ -1,3 +1,9 @@
-let ProxyServer = require('./proxy_server');
+var ProxyServer = require('./proxy_server');
+var ProxyClient = require('./proxy_client');
+var Task = require('./Task');
 
-let server = new ProxyServer(3000);
+module.exports = {
+  ProxyServer: ProxyServer,
+  ProxyClient: ProxyClient,
+  Task: Task
+};

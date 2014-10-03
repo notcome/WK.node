@@ -26,12 +26,34 @@ class ProxyServer {
     this.queue  = new DispatchQueue();
     initRouters(this.app, this.io, this.queue);
 
-    this.io.on('connection', socket =>
-      socket.on('node.task', msg =>
-        forwardTaskResult(msg, this.queue)));
+    let self = this;
+    this.io.on('connection', socket => {
+      socket.on('ready', () => self.emitReady());
+      socket.on('node.task', msg => forwardTaskResult(msg, this.queue));
+    });
 
-    this.server.listen(port, () => console.log('listening on *:', port));
+    this.server.listen(port, () => {
+      console.log('listening on *:', port);
+      console.log('waiting for connection');
+    });
+
+    this.ready = false;
+    this.waitList = [];
   }
-}
+
+  onReady (f) {
+    if (this.ready)
+      f();
+    this.waitList.push(f);
+  }
+
+  emitReady () {
+    if (this.ready)
+      return;
+    this.ready = true;
+    console.log('worker connected');
+    this.waitList.forEach(f => f());
+  }
+};
 
 module.exports = ProxyServer;

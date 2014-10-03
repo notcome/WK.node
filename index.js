@@ -5,4 +5,4 @@ function isModuleFiles (filename) {
 }
 
 traceur.require.makeDefault(isModuleFiles);
-require('./main');
+require('./test');

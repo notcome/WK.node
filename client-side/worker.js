@@ -3,6 +3,8 @@ var canvas = document.getElementById('canvas');
 var finished = 0;
 var counter = document.getElementById('counter');
 
+socket.emit('ready', '');
+
 socket.on('node.task', function (msg) {
   var { html, args, code, id } = JSON.parse(msg);
   var transformer = eval(code).apply(null, args);
