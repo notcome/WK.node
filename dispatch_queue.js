@@ -17,4 +17,4 @@ class DispatchQueue {
   }
 };
 
-module.exports = () => new DispatchQueue();
+module.exports = DispatchQueue;
