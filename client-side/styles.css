@@ -1,0 +1,20 @@
+main {
+  width: 800px;
+  margin: auto;
+}
+
+h1, p {
+  font-family: 'Helvetica Neue', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 100px;
+  font-weight: 100;
+  margin-bottom: 18px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 24px;
+}
